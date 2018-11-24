@@ -26,6 +26,7 @@ import android.os.SystemClock;
 import android.provider.Settings;
 import android.util.AttributeSet;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
 
@@ -124,6 +125,7 @@ public class NetworkTrafficSB extends TextView implements StatusIconDisplayable 
 
                 // Update view if there's anything new to show
                 if (!output.contentEquals(getText())) {
+                    setGravity(Gravity.RIGHT | Gravity.CENTER_VERTICAL);
                     setText(output);
                 }
                 mTrafficVisible = true;
@@ -364,6 +366,7 @@ public class NetworkTrafficSB extends TextView implements StatusIconDisplayable 
         final Resources resources = getResources();
         txtImgPadding = resources.getDimensionPixelSize(R.dimen.net_traffic_txt_img_padding);
         setCompoundDrawablePadding(txtImgPadding);
+        setGravity(Gravity.RIGHT);
         updateTextSize();
     }
 
