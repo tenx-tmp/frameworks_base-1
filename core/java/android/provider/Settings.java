@@ -11047,6 +11047,12 @@ public final class Settings {
                 ENABLED_NOTIFICATION_POLICY_ACCESS_PACKAGES
         };
 
+
+        /**
+         * Control whether the process CPU info meter should be shown.
+         * @hide
+         */
+        public static final String SHOW_CPU_OVERLAY = "show_cpu_overlay";
         /**
          * How long Assistant handles have enabled in milliseconds.
          *
