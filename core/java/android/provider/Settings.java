@@ -5629,6 +5629,11 @@ public final class Settings {
         public static final String NETWORK_TRAFFIC_ICON_TYPE = "network_traffic_icon_type";
 
         /**
+         * @hide
+         */
+        public static final String USE_OLD_MOBILETYPE = "use_old_mobiletype";
+
+        /**
          * Keys we no longer back up under the current schema, but want to continue to
          * process when restoring historical backup datasets.
          *
