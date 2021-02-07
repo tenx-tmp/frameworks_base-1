@@ -5623,6 +5623,12 @@ public final class Settings {
          public static final String NETWORK_TRAFFIC_VIEW_LOCATION = "network_traffic_view_location";
 
         /**
+         * Network Traffic icon type
+         * @hide
+         */
+        public static final String NETWORK_TRAFFIC_ICON_TYPE = "network_traffic_icon_type";
+
+        /**
          * Keys we no longer back up under the current schema, but want to continue to
          * process when restoring historical backup datasets.
          *
