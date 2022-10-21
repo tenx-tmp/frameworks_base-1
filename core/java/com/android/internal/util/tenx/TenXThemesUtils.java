@@ -16,5 +16,47 @@
 
 package com.android.internal.util.tenx;
 
+import android.content.om.IOverlayManager;
+import android.os.RemoteException;
+
+import android.util.Log;
+
 public class TenXThemesUtils {
+
+    public static final String TAG = "TenXThemeUtils";
+
+    // QS Tile Styles
+    public static final String[] QS_TILE_STYLES = {
+            "com.android.systemui.qstile.default",
+            "com.android.systemui.qstile.minimal",
+            "com.android.systemui.qstile.stroke",
+    };
+
+    // Switches qs tile style to user selected.
+    public static void updateQSTileStyle(IOverlayManager om, int userId, int qsTileStyle) {
+        if (qsTileStyle == 0) {
+            stockQSTileStyle(om, userId);
+        } else {
+            try {
+                om.setEnabled(TenXThemesUtils.QS_TILE_STYLES[qsTileStyle],
+                        true, userId);
+            } catch (RemoteException e) {
+                Log.w(TAG, "Can't change qs tile icon", e);
+            }
+        }
+    }
+
+    // Switches qs tile style back to stock.
+    public static void stockQSTileStyle(IOverlayManager om, int userId) {
+        // skip index 0
+        for (int i = 0; i < TenXThemesUtils.QS_TILE_STYLES.length; i++) {
+            String qstilestyle = TenXThemesUtils.QS_TILE_STYLES[i];
+            try {
+                om.setEnabled(qstilestyle,
+                        false /*disable*/, userId);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

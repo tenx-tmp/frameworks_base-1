@@ -5519,6 +5519,17 @@ public final class Settings {
          * the setting value. See an example above.
          */
 
+        /** ================================================================================================================================================================= */
+        /** ==================================================================== Init TenX Setting Strings ==================================================================== */
+        /** ================================================================================================================================================================= */
+        /**
+
+        /**
+         * QS Tile Styles
+         * @hide
+         */
+        public static final String QS_TILE_STYLES = "qs_tile_styles";
+
         /**
          * Keys we no longer back up under the current schema, but want to continue to
          * process when restoring historical backup datasets.
