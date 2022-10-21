@@ -32,6 +32,12 @@ public class TenXThemesUtils {
             "com.android.systemui.qstile.stroke",
     };
 
+    // QQS Max rows
+    public static final String[] QQS_MAX_ROWS = {
+            "com.android.systemui.qqs.rows_default",
+            "com.android.systemui.qqs.rows_extra",
+    };
+
     // Switches qs tile style to user selected.
     public static void updateQSTileStyle(IOverlayManager om, int userId, int qsTileStyle) {
         if (qsTileStyle == 0) {
@@ -53,6 +59,34 @@ public class TenXThemesUtils {
             String qstilestyle = TenXThemesUtils.QS_TILE_STYLES[i];
             try {
                 om.setEnabled(qstilestyle,
+                        false /*disable*/, userId);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    // Switches QQS Max rows to user selected.
+    public static void updateQQSMaxRows(IOverlayManager om, int userId, int qqsMaxRows) {
+        if (qqsMaxRows == 0) {
+            stockQQSMaxRows(om, userId);
+        } else {
+            try {
+                om.setEnabled(TenXThemesUtils.QQS_MAX_ROWS[qqsMaxRows],
+                        true, userId);
+            } catch (RemoteException e) {
+                Log.w(TAG, "Can't change qqs max rows", e);
+            }
+        }
+    }
+
+    // Switches QQS MAx rows back to stock.
+    public static void stockQQSMaxRows(IOverlayManager om, int userId) {
+        // skip index 0
+        for (int i = 0; i < TenXThemesUtils.QQS_MAX_ROWS.length; i++) {
+            String qqsmaxrows = TenXThemesUtils.QQS_MAX_ROWS[i];
+            try {
+                om.setEnabled(qqsmaxrows,
                         false /*disable*/, userId);
             } catch (RemoteException e) {
                 e.printStackTrace();

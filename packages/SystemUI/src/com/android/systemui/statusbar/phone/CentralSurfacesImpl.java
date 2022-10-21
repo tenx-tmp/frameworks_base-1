@@ -2008,6 +2008,9 @@ public class CentralSurfacesImpl extends CoreStartable implements
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.QS_TILE_STYLES),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.QQS_MAX_ROWS),
+                    false, this, UserHandle.USER_ALL);
         }
 
         @Override
@@ -2016,6 +2019,10 @@ public class CentralSurfacesImpl extends CoreStartable implements
                     Settings.System.QS_TILE_STYLES))) {
                 stockTileStyle();
                 updateTileStyle();
+            } else if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.QQS_MAX_ROWS))) {
+                stockQQSMaxRows();
+                updateQQSMaxRows();
             }
         }
 
@@ -4053,6 +4060,18 @@ public class CentralSurfacesImpl extends CoreStartable implements
     // Unload all qs tile styles back to stock
     public void stockTileStyle() {
         TenXThemesUtils.stockQSTileStyle(mOverlayManager, mLockscreenUserManager.getCurrentUserId());
+    }
+
+    // Switches qqs max rows from stock to custom
+    public void updateQQSMaxRows() {
+        int qqsMaxRows = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.QQS_MAX_ROWS, 0, mLockscreenUserManager.getCurrentUserId());
+        TenXThemesUtils.updateQQSMaxRows(mOverlayManager, mLockscreenUserManager.getCurrentUserId(), qqsMaxRows);
+    }
+
+    // Unload all qqs max rows back to stock
+    public void stockQQSMaxRows() {
+        TenXThemesUtils.stockQQSMaxRows(mOverlayManager, mLockscreenUserManager.getCurrentUserId());
     }
 
     private final BroadcastReceiver mBannerActionBroadcastReceiver = new BroadcastReceiver() {

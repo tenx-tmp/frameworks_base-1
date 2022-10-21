@@ -5531,6 +5531,12 @@ public final class Settings {
         public static final String QS_TILE_STYLES = "qs_tile_styles";
 
         /**
+         * QQS Max rows
+         * @hide
+         */
+        public static final String QQS_MAX_ROWS = "qqs_max_rows";
+
+        /**
          * Keys we no longer back up under the current schema, but want to continue to
          * process when restoring historical backup datasets.
          *
