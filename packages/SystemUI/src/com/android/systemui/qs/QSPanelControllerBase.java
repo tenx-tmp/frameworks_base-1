@@ -93,6 +93,10 @@ public abstract class QSPanelControllerBase<T extends QSPanel> extends ViewContr
                         mLastOrientation = newConfig.orientation;
                         switchTileLayout(false);
                     }
+                    if (mView.getTileLayout() != null) {
+                        mView.getTileLayout().updateSettings();
+                        setTiles();
+                    }
                 }
             };
 
