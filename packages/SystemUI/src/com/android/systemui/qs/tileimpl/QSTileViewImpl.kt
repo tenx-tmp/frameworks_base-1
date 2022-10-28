@@ -146,6 +146,7 @@ open class QSTileViewImpl @JvmOverloads constructor(
     private val locInScreen = IntArray(2)
     private val forceHideCheveron = true
     private var qsTileVertical = false
+    private var secondaryLabelHidden = false
 
     init {
         setId(generateViewId())
@@ -501,6 +502,11 @@ open class QSTileViewImpl @JvmOverloads constructor(
         if (!Objects.equals(label.text, state.label)) {
             label.text = state.label
         }
+
+        secondaryLabelHidden = Settings.System.getIntForUser(context.getContentResolver(),
+                Settings.System.QS_SECONDARY_LABEL_HIDDEN,
+                if (secondaryLabelHidden) 1 else 0, UserHandle.USER_CURRENT) != 0;
+
         if (!Objects.equals(secondaryLabel.text, state.secondaryLabel)) {
             secondaryLabel.text = state.secondaryLabel
             secondaryLabel.visibility = if (TextUtils.isEmpty(state.secondaryLabel)) {
@@ -508,6 +514,7 @@ open class QSTileViewImpl @JvmOverloads constructor(
             } else {
                 VISIBLE
             }
+            secondaryLabel.visibility = if (secondaryLabelHidden) GONE else VISIBLE
         }
 
         // Colors

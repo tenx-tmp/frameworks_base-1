@@ -5543,6 +5543,12 @@ public final class Settings {
         public static final String TENX_QS_TILE_VERTICAL_LAYOUT = "tenx_qs_tile_vertical_layout";
 
         /**
+         * Hide QS secondary label
+         * @hide
+         */
+        public static final String QS_SECONDARY_LABEL_HIDDEN = "qs_secondary_label_hidden";
+
+        /**
          * Keys we no longer back up under the current schema, but want to continue to
          * process when restoring historical backup datasets.
          *
