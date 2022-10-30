@@ -157,7 +157,7 @@ open class QSTileViewImpl @JvmOverloads constructor(
 
         if (qsTileVertical) {
             orientation = LinearLayout.VERTICAL
-            gravity = Gravity.CENTER_HORIZONTAL or Gravity.CENTER_VERTICAL
+            gravity = Gravity.CENTER_HORIZONTAL
         } else {
             orientation = LinearLayout.HORIZONTAL
             gravity = Gravity.CENTER_VERTICAL or Gravity.START
@@ -212,7 +212,7 @@ open class QSTileViewImpl @JvmOverloads constructor(
 
         if (qsTileVertical) {
             orientation = LinearLayout.VERTICAL
-            gravity = Gravity.CENTER_HORIZONTAL or Gravity.CENTER_VERTICAL
+            gravity = Gravity.CENTER_HORIZONTAL
         } else {
             orientation = LinearLayout.HORIZONTAL
             gravity = Gravity.CENTER_VERTICAL or Gravity.START
