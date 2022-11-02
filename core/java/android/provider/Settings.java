@@ -5549,6 +5549,30 @@ public final class Settings {
         public static final String QS_SECONDARY_LABEL_HIDDEN = "qs_secondary_label_hidden";
 
         /**
+         * QS Tile Icon color
+         * @hide
+         */
+        public static final String QS_TILE_ICON_COLOR = "qs_tile_icon_color";
+
+        /**
+         * QS Tile label color
+         * @hide
+         */
+        public static final String QS_TILE_LABEL_COLOR = "qs_tile_label_color";
+
+        /**
+         * QS Tile random color
+         * @hide
+         */
+        public static final String QS_TILE_RANDOM_COLOR = "qs_tile_random_color";
+
+        /**
+         * QS Tile secondary label color
+         * @hide
+         */
+        public static final String QS_TILE_SECONDARY_LABEL_COLOR = "qs_tile_secondary_label_color";
+
+        /**
          * Keys we no longer back up under the current schema, but want to continue to
          * process when restoring historical backup datasets.
          *

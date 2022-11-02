@@ -23,6 +23,7 @@ import android.content.Context
 import android.content.res.ColorStateList
 import android.content.res.Configuration
 import android.content.res.Resources.ID_NULL
+import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.RippleDrawable
 import android.os.Trace
@@ -52,6 +53,7 @@ import com.android.systemui.plugins.qs.QSTile.BooleanState
 import com.android.systemui.plugins.qs.QSTileView
 import com.android.systemui.qs.tileimpl.QSIconViewImpl.QS_ANIM_LENGTH
 import java.util.Objects
+import java.util.Random
 
 private const val TAG = "QSTileViewImpl"
 open class QSTileViewImpl @JvmOverloads constructor(
@@ -109,6 +111,11 @@ open class QSTileViewImpl @JvmOverloads constructor(
     private val colorSecondaryLabelUnavailable =
             Utils.applyAlpha(UNAVAILABLE_ALPHA, colorSecondaryLabelInactive)
 
+    private val colorAccent = 
+            Utils.getColorAttrDefaultColor(context, com.android.internal.R.attr.colorAccent)
+    private val colorPrimary =
+            Utils.getColorAttrDefaultColor(context, android.R.attr.textColorPrimary)
+
     private lateinit var label: TextView
     protected lateinit var secondaryLabel: TextView
     private lateinit var labelContainer: IgnorableChildLinearLayout
@@ -147,6 +154,10 @@ open class QSTileViewImpl @JvmOverloads constructor(
     private val forceHideCheveron = true
     private var qsTileVertical = false
     private var secondaryLabelHidden = false
+    private var qsTileRandomColor = false
+
+    private val rnd = Random()
+    private val randomColor = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256))
 
     init {
         setId(generateViewId())
@@ -636,8 +647,12 @@ open class QSTileViewImpl @JvmOverloads constructor(
     }
 
     private fun getBackgroundColorForState(state: Int): Int {
+        qsTileRandomColor = Settings.System.getIntForUser(context.getContentResolver(),
+                Settings.System.QS_TILE_RANDOM_COLOR,
+                if (qsTileRandomColor) 1 else 0, UserHandle.USER_CURRENT) != 0;
         return when (state) {
-            Tile.STATE_ACTIVE -> colorActive
+            Tile.STATE_ACTIVE -> 
+                if (qsTileRandomColor) randomColor else colorActive
             Tile.STATE_INACTIVE -> colorInactive
             Tile.STATE_UNAVAILABLE -> colorUnavailable
             else -> {
@@ -648,8 +663,18 @@ open class QSTileViewImpl @JvmOverloads constructor(
     }
 
     private fun getLabelColorForState(state: Int): Int {
+        val qsTileLabelColor = Settings.System.getIntForUser(context.getContentResolver(),
+                Settings.System.QS_TILE_LABEL_COLOR, 0, UserHandle.USER_CURRENT);
         return when (state) {
-            Tile.STATE_ACTIVE -> colorLabelActive
+            Tile.STATE_ACTIVE -> 
+            if (qsTileLabelColor == 0)
+                colorLabelActive
+            else if (qsTileLabelColor == 1)
+                colorAccent
+            else if (qsTileLabelColor == 2)
+                colorPrimary
+            else
+                randomColor
             Tile.STATE_INACTIVE -> colorLabelInactive
             Tile.STATE_UNAVAILABLE -> colorLabelUnavailable
             else -> {
@@ -660,8 +685,18 @@ open class QSTileViewImpl @JvmOverloads constructor(
     }
 
     private fun getSecondaryLabelColorForState(state: Int): Int {
+        val qsTileSecondaryLabelColor = Settings.System.getIntForUser(context.getContentResolver(),
+                Settings.System.QS_TILE_SECONDARY_LABEL_COLOR, 0, UserHandle.USER_CURRENT);
         return when (state) {
-            Tile.STATE_ACTIVE -> colorSecondaryLabelActive
+            Tile.STATE_ACTIVE ->
+            if (qsTileSecondaryLabelColor == 0)
+                colorSecondaryLabelActive
+            else if (qsTileSecondaryLabelColor == 1)
+                colorAccent
+            else if (qsTileSecondaryLabelColor == 2)
+                colorPrimary
+            else 
+                randomColor
             Tile.STATE_INACTIVE -> colorSecondaryLabelInactive
             Tile.STATE_UNAVAILABLE -> colorSecondaryLabelUnavailable
             else -> {

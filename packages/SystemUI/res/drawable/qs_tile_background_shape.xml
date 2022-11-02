@@ -19,3 +19,4 @@
     <corners android:radius="@dimen/qs_corner_radius" />
     <solid android:color="#FFFFFF" />
 </shape>
+
