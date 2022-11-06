@@ -26,6 +26,7 @@ import android.content.res.Resources.ID_NULL
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.RippleDrawable
+import android.graphics.PorterDuff.Mode
 import android.os.Trace
 import android.os.UserHandle
 import android.provider.Settings
@@ -282,8 +283,11 @@ open class QSTileViewImpl @JvmOverloads constructor(
     }
 
     fun createTileBackground(): Drawable {
+        val backgroundAlpha = Settings.System.getIntForUser(context.getContentResolver(),
+                Settings.System.QS_TILE_BACKGROUND_ALPHA, 255, UserHandle.USER_CURRENT);
         ripple = mContext.getDrawable(R.drawable.qs_tile_background) as RippleDrawable
         colorBackgroundDrawable = ripple.findDrawableByLayerId(R.id.background)
+        ripple.alpha = backgroundAlpha
         return ripple
     }
 

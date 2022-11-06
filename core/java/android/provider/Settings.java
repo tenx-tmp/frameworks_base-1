@@ -5573,6 +5573,12 @@ public final class Settings {
         public static final String QS_TILE_SECONDARY_LABEL_COLOR = "qs_tile_secondary_label_color";
 
         /**
+         * QS Tile background alpha
+         * @hide
+         */
+        public static final String QS_TILE_BACKGROUND_ALPHA = "qs_tile_background_alpha";
+
+        /**
          * Keys we no longer back up under the current schema, but want to continue to
          * process when restoring historical backup datasets.
          *
