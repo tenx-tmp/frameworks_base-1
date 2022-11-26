@@ -5759,7 +5759,7 @@ public final class Settings {
           * 2: Display the battery percentage next to Icon
           * @hide
           */
-        public static final String STATUS_BAR_SHOW_BATTERY_PERCENT = "status_bar_show_battery_percent";
+        public static final String STATUS_BAR_SHOW_BATTERY_PERCENT = "status_bar_battery_percent";
 
         /**
          * Show battery percentage when charging
