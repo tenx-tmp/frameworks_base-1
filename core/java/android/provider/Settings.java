@@ -5865,6 +5865,54 @@ public final class Settings {
         public static final String SETTINGS_TENX_DASHBOARD_IMAGE_ALPHA = "settings_tenx_dashboard_image_alpha";
 
         /**
+         * Settings dashboard background shown
+         * @hide
+         */
+        public static final String SETTINGS_DASHBOARD_BACKGROUND_SHOWN = "settings_dashboard_background_shown";
+
+        /**
+         * Settings dashboard background styles
+         * @hide
+         */
+        public static final String SETTINGS_DASHBOARD_BACKGROUND_STYLE = "settings_dashboard_background_style";
+
+        /**
+         * Settings dashboard background color
+         * @hide
+         */
+        public static final String SETTINGS_DASHBOARD_BACKGROUND_COLOR = "settings_dashboard_background_color";
+
+        /**
+         * Settings dashboard background stroke width
+         * @hide
+         */
+        public static final String SETTINGS_DASHBOARD_BACKGROUND_STROKE_WIDTH = "settings_dashboard_background_stroke_width";
+
+        /**
+         * Settings dashboard background gradient start color
+         * @hide
+         */
+        public static final String SETTINGS_DASHBOARD_BACKGROUND_GRADIENT_START_COLOR = "settings_dashboard_background_gradient_start_color";
+
+        /**
+         * Settings dashboard background gradient end color
+         * @hide
+         */
+        public static final String SETTINGS_DASHBOARD_BACKGROUND_GRADIENT_END_COLOR = "settings_dashboard_background_gradient_end_color";
+
+        /**
+         * Settings dashboard accent icon (For default icon only)
+         * @hide
+         */
+        public static final String SETTINGS_DASHBOARD_ACCENT_ICON_COLOR = "settings_dashboard_icon_color";
+
+        /**
+         * Settings dashboard icon styles
+         * @hide
+         */
+        public static final String SETTINGS_DASHBOARD_IOCON_STYLES = "settings_dashboard_icon_styles";
+
+        /**
          * Keys we no longer back up under the current schema, but want to continue to
          * process when restoring historical backup datasets.
          *
